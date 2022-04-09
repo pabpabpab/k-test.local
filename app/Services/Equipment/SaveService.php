@@ -10,13 +10,14 @@ class SaveService
     public function save(Request $request): bool
     {
         $typeId = $request->input('typeData.typeId');
+        
         $comment = $request->input('comment') ?? '';
 
         $serialNumbers = $request->input('serialNumbers');
-        $numbersArr = explode("\n", $serialNumbers);
+        $serialNumbersArr = explode("\n", $serialNumbers);
 
         $data = [];
-        foreach ($numbersArr as $serialNumber) {
+        foreach ($serialNumbersArr as $serialNumber) {
             $item = [
                 'equipment_type_id' => $typeId,
                 'serial_number' => $serialNumber,
