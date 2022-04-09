@@ -10,9 +10,7 @@ class SaveService
     public function save(Request $request): bool
     {
         $typeId = $request->input('typeData.typeId');
-        
         $comment = $request->input('comment') ?? '';
-
         $serialNumbers = $request->input('serialNumbers');
         $serialNumbersArr = explode("\n", $serialNumbers);
 
