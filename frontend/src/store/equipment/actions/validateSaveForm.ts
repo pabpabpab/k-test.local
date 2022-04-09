@@ -16,8 +16,8 @@ const validateSaveForm: ActionTree<EquipmentState, RootState> = {
     equipment: EquipmentObject,
   ): void {
     commit(ErrorMutation.RESET_FORM_ERROR, null, { root: true });
-    const formErrorObject = getSavingFormValidationErrors(equipment);
-    commit(ErrorMutation.SET_FORM_ERROR, formErrorObject, { root: true });
+    const errorObject = getSavingFormValidationErrors(equipment);
+    commit(ErrorMutation.SET_FORM_ERROR, errorObject, { root: true });
   },
 };
 
