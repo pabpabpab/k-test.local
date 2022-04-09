@@ -8,9 +8,7 @@ import { RootState } from '@/store/types';
 
 const getJson: ActionTree<HttpState, RootState> = {
   [AT.GET_JSON]({ commit, rootState }, url: string): Promise<any> {
-    // console.log(url);
     commit(MT.RESET_HTTP_ERROR);
-
     return fetch(rootState.apiUrlPrefix + url, {
       method: 'GET',
       headers: {

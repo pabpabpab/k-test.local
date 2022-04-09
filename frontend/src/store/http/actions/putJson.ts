@@ -9,9 +9,6 @@ import { RootState } from '@/store/types';
 const putJson: ActionTree<HttpState, RootState> = {
   [AT.PUT_JSON]({ commit, rootState }, payload: { url: string, data: object }): Promise<any> {
     const { url, data } = payload;
-
-    console.log(url);
-
     commit(MT.RESET_HTTP_ERROR);
     return fetch(rootState.apiUrlPrefix + url, {
       method: 'PUT',

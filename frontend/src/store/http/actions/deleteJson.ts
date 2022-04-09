@@ -8,9 +8,7 @@ import { RootState } from '@/store/types';
 
 const deleteJson: ActionTree<HttpState, RootState> = {
   [AT.DELETE_JSON]({ commit, rootState }, url: string): Promise<any> {
-    console.log(url);
     commit(MT.RESET_HTTP_ERROR);
-
     return fetch(rootState.apiUrlPrefix + url, {
       method: 'DELETE',
       headers: {
