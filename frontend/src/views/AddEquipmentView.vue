@@ -94,6 +94,7 @@
 </template>
 
 <script setup lang="ts">
+/* eslint-disable */
 import useEquipmentTypes from '@/composables/useEquipmentTypes';
 import useTextareaHeightFitter from '@/composables/useTextareaHeightFitter';
 import useSaveEquipment from '@/composables/useSaveEquipment';
@@ -106,31 +107,4 @@ const {
   validateForm,
   saveEquipment,
 } = useSaveEquipment();
-
-/*
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'AddEquipmentView',
-  data() {
-    return {
-      localEquipment: {
-        id: 0,
-        type: '',
-        serial_numbers: '',
-        comment: '',
-      },
-      equipmentTypes: [],
-    };
-  },
-
-  methods: {
-    saveEquipment() {
-      console.log(this.localEquipment);
-    },
-  },
-
-  // <img alt="Vue logo" src="../assets/logo.png">
-});
-*/
 </script>
