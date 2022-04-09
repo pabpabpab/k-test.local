@@ -1,0 +1,20 @@
+
+.top_menu
+    position: fixed
+    z-index: 10
+    width: 100%
+    display: flex
+    padding: 0
+    box-sizing: border-box
+    background-color: #FFF
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3)
+    &__link
+        +font(17px, #333, 400)
+        display: block
+        padding: 20px 30px
+        background-color: #fff
+        &:hover
+            background-color: $basicBackgroundColor
+        &_active
+            background-color: #fff
+            border-bottom: 3px solid rgb(25, 118, 210)

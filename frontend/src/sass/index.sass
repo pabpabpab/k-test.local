@@ -1,0 +1,34 @@
+=font($size,$color,$weight)
+  font-size: $size
+  color: $color
+  font-weight: $weight
+
+$basicBackgroundColor: #f8f8f8
+
+*
+    padding: 0
+    margin: 0
+
+body
+    font-family: Arial
+    background-color: $basicBackgroundColor
+
+a
+  text-decoration: none
+
+.content_wrapper
+    padding: 90px 20px 50px 20px
+    text-align: center
+
+h1
+    font-family: Arial
+    +font(20px, #333, 700)
+
+.content_block
+    background-color: #fff
+    box-shadow: 0 10px 40px rgb(0, 0, 0, 0.1)
+    margin: 0 auto
+
+// @import "layout"
+@import "topMenu"
+@import "addEquipment"
