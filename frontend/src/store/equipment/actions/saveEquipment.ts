@@ -32,9 +32,9 @@ const saveEquipment: ActionTree<EquipmentState, RootState> = {
 
     // проверка серийных номеров на соответствие маске
     const regexpValue = getRegExpForMask(equipment.typeData.typeMask);
-    const mismatchingArr = getRegExpMismatches(equipment.serialNumbers, regexpValue);
-    if (mismatchingArr.length > 0) {
-      const errorObj = { mismatchingSerialNumbers: mismatchingArr };
+    const mismatchingNumbersArr = getRegExpMismatches(equipment.serialNumbers, regexpValue);
+    if (mismatchingNumbersArr.length > 0) {
+      const errorObj = { mismatchingSerialNumbers: mismatchingNumbersArr };
       commit(ErrorMutation.SET_FORM_ERROR, errorObj, { root: true });
       return;
     }
