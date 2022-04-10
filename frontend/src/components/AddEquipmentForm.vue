@@ -21,7 +21,8 @@
             {{ type.name }}
           </option>
         </select>
-        <p class="equipment_form__validation_message">
+
+        <p v-show="error.typeId" class="equipment_form__validation_message">
           {{ error.typeId }}
         </p>
       </div>
@@ -36,7 +37,9 @@
           @input="fitTextareaHeight($event);validateForm();"
           class="equipment_form__textarea_input">
         </textarea>
+
         <p
+          v-show="error.serialNumbers"
           v-html="error.serialNumbers"
           class="equipment_form__validation_message">
         </p>
@@ -116,7 +119,6 @@
 </template>
 
 <script setup lang="ts">
-/* eslint-disable */
 import useEquipmentTypes from '@/composables/useEquipmentTypes';
 import useTextareaHeightFitter from '@/composables/useTextareaHeightFitter';
 import useSaveEquipment from '@/composables/useSaveEquipment';
