@@ -1,9 +1,4 @@
-import {
-  ref,
-  onMounted,
-  computed,
-  watch,
-} from 'vue';
+import { onMounted, computed } from 'vue';
 import {
   EquipmentActionTypes as AT,
   EquipmentGetterTypes as GT,
@@ -13,13 +8,7 @@ import { useStore } from '@/store';
 export default function useEquipmentTypes(): object {
   const store = useStore();
 
-  const equipmentTypes = ref(<Array<object>>[]);
-
-  const getEquipmentTypes = computed(() => [...store.getters[`equipment/${GT.EQUIPMENT_TYPE_LIST}`]]);
-
-  watch(getEquipmentTypes, (val: object[]) => {
-    equipmentTypes.value = [...val];
-  });
+  const equipmentTypes = computed(() => [...store.getters[`equipment/${GT.EQUIPMENT_TYPE_LIST}`]]);
 
   onMounted(() => {
     store.dispatch(`equipment/${AT.LOAD_EQUIPMENT_TYPES}`);

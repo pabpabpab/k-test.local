@@ -42,7 +42,6 @@ const saveEquipment: ActionTree<EquipmentState, RootState> = {
     // если все ок, то post-запрос
     commit(RootMutation.SET_LOADING_FLAG, true, { root: true });
     const url = state.url.add;
-
     dispatch(HttpAction.POST_JSON, { url, data: equipment }, { root: true })
       .then((data) => {
         if (data?.backValidatorErrors?.serialNumbers) {
@@ -59,7 +58,7 @@ const saveEquipment: ActionTree<EquipmentState, RootState> = {
       .finally(() => {
         setTimeout(() => {
           commit(RootMutation.SET_LOADING_FLAG, false, { root: true });
-        }, 800);
+        }, 500);
       });
   },
 };
