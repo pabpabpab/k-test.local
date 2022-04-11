@@ -9,6 +9,7 @@ import mutations from './equipment_mutations';
 import loadEquipmentTypes from './actions/loadEquipmentTypes';
 import saveEquipment from './actions/saveEquipment';
 import validateSaveForm from './actions/validateSaveForm';
+import loadEquipment from './actions/loadEquipment';
 
 const equipment: Module<EquipmentState, RootState> = {
   namespaced: true,
@@ -19,6 +20,7 @@ const equipment: Module<EquipmentState, RootState> = {
     ...loadEquipmentTypes,
     ...saveEquipment,
     ...validateSaveForm,
+    ...loadEquipment,
   },
 };
 

@@ -7,6 +7,12 @@ use \Illuminate\Http\Request;
 
 class SaveService
 {
+    /**
+     * Save equipment list.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return bool
+     */
     public function save(Request $request): bool
     {
         $typeId = $request->input('typeData.typeId');

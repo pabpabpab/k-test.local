@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class EquipmentTypeController extends Controller
 {
+    /**
+     * Display resource list.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index(): JsonResponse
     {
         return EquipmentTypeResource::collection(EquipmentType::all())

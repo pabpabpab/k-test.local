@@ -14,11 +14,10 @@ class EquipmentResource extends JsonResource
      */
     public function toArray($request)
     {
-        //return parent::toArray($request);
-
         return [
             'id' => $this->id,
             'type_id' => $this->equipment_type_id,
+            'type_name' => $this->equipment_type->type_name,
             'serial_number' => $this->serial_number,
             'comment' => $this->comment,
         ];

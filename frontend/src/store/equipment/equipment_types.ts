@@ -7,21 +7,34 @@ export interface EquipmentState {
     delete: string,
     listOfTypes: string,
   },
+
   equipment: object[],
+  totalCount: number,
+  pageCount: number,
+  currentPage: number,
+  perPage: number,
   equipmentTypes: object[],
   singleEquipment: object,
 }
 
 // eslint-disable-next-line
 export enum EquipmentGetterTypes {
-  EQUIPMENT_TYPE_LIST = 'EQUIPMENT_TYPE_LIST',
   EQUIPMENT_LIST = 'EQUIPMENT_LIST',
+  TOTAL_COUNT = 'TOTAL_COUNT',
+  PAGE_COUNT = 'PAGE_COUNT',
+  CURRENT_PAGE = 'CURRENT_PAGE',
+  PER_PAGE = 'PER_PAGE',
+  EQUIPMENT_TYPE_LIST = 'EQUIPMENT_TYPE_LIST',
   SINGLE_EQUIPMENT = 'SINGLE_EQUIPMENT',
 }
 
 // eslint-disable-next-line
 export enum EquipmentMutationTypes {
   SET_EQUIPMENT = 'SET_EQUIPMENT',
+  SET_TOTAL_COUNT = 'SET_TOTAL_COUNT',
+  SET_PAGE_COUNT = 'SET_PAGE_COUNT',
+  SET_CURRENT_PAGE = 'SET_CURRENT_PAGE',
+  SET_PER_PAGE = 'SET_PER_PAGE',
   SET_SINGLE_EQUIPMENT = 'SET_SINGLE_EQUIPMENT',
   SET_EQUIPMENT_TYPES = 'SET_EQUIPMENT_TYPES',
 }

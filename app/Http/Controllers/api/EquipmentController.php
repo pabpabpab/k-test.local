@@ -3,24 +3,29 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\EquipmentCollection;
 use App\Http\Resources\EquipmentResource;
-use App\Http\Resources\EquipmentTypeResource;
 use App\Models\Equipment;
 use App\Http\Requests\StoreEquipmentRequest;
 use App\Http\Requests\UpdateEquipmentRequest;
 use App\Services\Equipment\SaveService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 
 class EquipmentController extends Controller
 {
 
-    public function index(): JsonResponse
+    /**
+     * Display resource list.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function index(Request $request): JsonResponse
     {
-        // return response()->json(new EquipmentCollection(Equipment::paginate()));
-
-        return EquipmentResource::collection(Equipment::paginate(5))
+        $perPage = $request->query('per_page', 5);
+        return EquipmentResource::collection(Equipment::with('equipment_type')
+            ->paginate($perPage))
             ->response();
     }
 
@@ -28,7 +33,7 @@ class EquipmentController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreEquipmentRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(StoreEquipmentRequest $request, SaveService $service): JsonResponse
     {

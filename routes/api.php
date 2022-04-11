@@ -15,7 +15,11 @@ use \App\Http\Controllers\api\EquipmentTypeController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+/*
+\Illuminate\Support\Facades\DB::listen(function($query) {
+    info($query->sql, $query->bindings);
+});
+*/
 /*
 Route::get('/equipment', [EquipmentController::class, 'index']);
 Route::get('/equipment/{equipment}', [EquipmentController::class, 'show']);

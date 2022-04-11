@@ -1,5 +1,7 @@
 <template>
-  <div>
-    <h1>This is an equipment list page</h1>
-  </div>
+  <EquipmentList/>
 </template>
+
+<script setup lang="ts">
+import EquipmentList from '@/components/EquipmentList.vue';
+</script>

@@ -9,6 +9,18 @@ const mutations: MutationTree<EquipmentState> = {
   [MT.SET_EQUIPMENT](state, data: object[]): void {
     state.equipment = [...data];
   },
+  [MT.SET_TOTAL_COUNT](state, value: number): void {
+    state.totalCount = value;
+  },
+  [MT.SET_PAGE_COUNT](state, value: number): void {
+    state.pageCount = value;
+  },
+  [MT.SET_CURRENT_PAGE](state, value: number): void {
+    state.currentPage = value;
+  },
+  [MT.SET_PER_PAGE](state, value: number): void {
+    state.perPage = value;
+  },
   [MT.SET_SINGLE_EQUIPMENT](state, data: object): void {
     state.singleEquipment = { ...data };
   },

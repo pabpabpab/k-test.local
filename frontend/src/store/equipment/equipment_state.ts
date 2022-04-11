@@ -11,6 +11,11 @@ const state: EquipmentState = {
   },
 
   equipment: [],
+  totalCount: 0,
+  pageCount: 0,
+  currentPage: 0,
+  perPage: 5,
+
   equipmentTypes: [],
   singleEquipment: {},
 };
