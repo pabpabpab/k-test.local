@@ -25,6 +25,7 @@ class EquipmentController extends Controller
     {
         $perPage = $request->query('per_page', 5);
         return EquipmentResource::collection(Equipment::with('equipment_type')
+            ->orderBy('id', 'desc')
             ->paginate($perPage))
             ->response();
     }
@@ -70,11 +71,13 @@ class EquipmentController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Equipment  $equipment
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(Equipment $equipment)
+    public function destroy(Equipment $equipment): JsonResponse
     {
-        //
+        return response()->json([
+            'success' => $equipment->delete()
+        ]);
     }
 }
 

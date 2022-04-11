@@ -11,6 +11,7 @@ import getSavingFormValidationErrors from '@/helpers/validation/equipment/getSav
 import getRegExpForMask from '@/helpers/getRegExpForMask';
 import getRegExpMismatches from '@/helpers/validation/equipment/getRegExpMismatches';
 import router from '@/router';
+import { ElMessage } from 'element-plus';
 
 const saveEquipment: ActionTree<EquipmentState, RootState> = {
   [EquipmentAction.SAVE_EQUIPMENT](
@@ -52,6 +53,13 @@ const saveEquipment: ActionTree<EquipmentState, RootState> = {
         }
 
         if (data.saveSuccess) {
+          ElMessage({
+            message: 'Оборудование добавлено.',
+            type: 'success',
+            duration: 1500,
+            offset: 300,
+            customClass: 'el-message_custom',
+          });
           router.push({ name: 'EquipmentList' });
         }
       })

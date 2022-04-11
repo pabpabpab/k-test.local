@@ -4,6 +4,7 @@ import { EquipmentState, EquipmentGetterTypes as GT } from '@/store/equipment/eq
 
 const getters: GetterTree<EquipmentState, RootState> = {
   [GT.EQUIPMENT_LIST]: (state): object[] => state.equipment,
+  [GT.ACTUAL_EQUIPMENT_COUNT_ON_CURRENT_PAGE]: (state): number => state.equipment.length,
   [GT.TOTAL_COUNT]: (state): number => state.totalCount,
   [GT.PAGE_COUNT]: (state): number => state.pageCount,
   [GT.CURRENT_PAGE]: (state): number => state.currentPage,
