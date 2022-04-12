@@ -11,6 +11,7 @@ import saveEquipment from './actions/saveEquipment';
 import validateSaveForm from './actions/validateSaveForm';
 import loadEquipment from './actions/loadEquipment';
 import deleteEquipment from './actions/deleteEquipment';
+import loadSingleEquipment from './actions/loadSingleEquipment';
 
 const equipment: Module<EquipmentState, RootState> = {
   namespaced: true,
@@ -23,6 +24,7 @@ const equipment: Module<EquipmentState, RootState> = {
     ...validateSaveForm,
     ...loadEquipment,
     ...deleteEquipment,
+    ...loadSingleEquipment,
   },
 };
 

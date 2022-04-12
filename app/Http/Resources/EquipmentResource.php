@@ -16,9 +16,12 @@ class EquipmentResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'type_id' => $this->equipment_type_id,
-            'type_name' => $this->equipment_type->type_name,
-            'serial_number' => $this->serial_number,
+            'typeData' => [
+                'typeId' => $this->equipment_type_id,
+                'typeMask' => $this->equipment_type->serial_number_mask,
+                'typeName' => $this->equipment_type->type_name,
+            ],
+            'serialNumber' => $this->serial_number,
             'comment' => $this->comment,
         ];
     }

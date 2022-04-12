@@ -1,5 +1,5 @@
-export default function getRegExpMismatches(serialNumbers: string, regexpValue: string): string[] {
-  const numbersArr = serialNumbers.split('\n');
+export default function getRegExpMismatches(serialNumber: string, regexpValue: string): string[] {
+  const numbersArr = serialNumber.split('\n');
   const nonEmptyNumbersArr = numbersArr.filter((item) => item.length > 0);
 
   const re = new RegExp(regexpValue);

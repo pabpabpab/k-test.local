@@ -48,11 +48,11 @@ class EquipmentController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Equipment  $equipment
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Equipment $equipment)
+    public function show(Equipment $equipment): JsonResponse
     {
-        //
+        return response()->json(new EquipmentResource($equipment));
     }
 
     /**

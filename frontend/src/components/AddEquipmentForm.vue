@@ -31,7 +31,7 @@
         <p class="equipment_form__property_header">Серийные номера</p>
         <!-- eslint-disable-next-line  -->
         <textarea
-          v-model="localEquipment.serialNumbers"
+          v-model="localEquipment.serialNumber"
           @keyup="fitTextareaHeight($event);"
           @click="fitTextareaHeight($event);"
           @input="fitTextareaHeight($event);validateForm();"
@@ -39,18 +39,18 @@
         </textarea>
 
         <p
-          v-show="error.serialNumbers"
-          v-html="error.serialNumbers"
+          v-show="error.serialNumber"
+          v-html="error.serialNumber"
           class="equipment_form__validation_message">
         </p>
 
         <p
-          v-show="error.repeatedSerialNumbers.length"
+          v-show="error.repeatedSerialNumber.length"
           class="equipment_form__validation_message_black">
           Ниже указаны номера присутствующие в вашем списке более 1 раза:
           <br>
           <span
-            v-html="error.repeatedSerialNumbers"
+            v-html="error.repeatedSerialNumber"
             class="equipment_form__validation_message">
           </span>
           <br><br>
@@ -60,7 +60,7 @@
         </p>
 
         <p
-          v-show="error.mismatchingSerialNumbers.length"
+          v-show="error.mismatchingSerialNumber.length"
           class="equipment_form__validation_message_black">
           Ниже указаны номера не соответствующие выбранной маске
           <span
@@ -68,29 +68,29 @@
             class="equipment_form__validation_message">
           </span>, эти номера исключены из списка:<br>
           <span
-            v-html="error.mismatchingSerialNumbers.join('<br>')"
+            v-html="error.mismatchingSerialNumber.join('<br>')"
             class="equipment_form__validation_message">
           </span>
           <br><br>
           <span
-            v-if="localEquipment.serialNumbers.length > 0"
+            v-if="localEquipment.serialNumber.length > 0"
             class='equipment_form__validation_message_black_bold'>
             Нажмите кнопку «Сохранить» чтобы сохранить оставшийся список.
           </span>
         </p>
 
         <p
-          v-show="error.nonUniqueSerialNumbers.length"
+          v-show="error.nonUniqueSerialNumber.length"
           class="equipment_form__validation_message_black">
           Ниже указаны номера которые уже есть в базе,
           эти номера исключены из списка:<br>
           <span
-            v-html="error.nonUniqueSerialNumbers.join('<br>')"
+            v-html="error.nonUniqueSerialNumber.join('<br>')"
             class='equipment_form__validation_message'>
           </span>
           <br><br>
           <span
-            v-if="localEquipment.serialNumbers.length > 0"
+            v-if="localEquipment.serialNumber.length > 0"
             class='equipment_form__validation_message_black_bold'>
             Нажмите кнопку «Сохранить» чтобы сохранить оставшийся список.
           </span>

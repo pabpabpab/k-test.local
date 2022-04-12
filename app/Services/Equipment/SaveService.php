@@ -17,7 +17,7 @@ class SaveService
     {
         $typeId = $request->input('typeData.typeId');
         $comment = $request->input('comment') ?? '';
-        $serialNumbers = $request->input('serialNumbers');
+        $serialNumbers = $request->input('serialNumber');
         $serialNumbersArr = explode("\n", $serialNumbers);
 
         $data = [];

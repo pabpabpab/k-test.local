@@ -5,19 +5,25 @@
 
       <el-table :data="equipmentList" height="85%" class="equipment_list_table">
         <el-table-column prop="id" label="ID" width="80"/>
-        <el-table-column prop="type_name" label="Тип оборудования" width="220"/>
-        <el-table-column prop="serial_number" label="Серийный номер" width="220"/>
+        <el-table-column prop="typeData.typeName" label="Тип оборудования" width="220"/>
+        <el-table-column prop="serialNumber" label="Серийный номер" width="220"/>
         <el-table-column prop="comment" label="Примечание" align="left"/>
         <el-table-column label="Действия" width="100" align="left">
           <template #default="scope">
 
-            <el-button type="text">
-              <el-icon
-                @click="handleEdit(equipmentList[scope.$index].id)"
-                :size="25" class="edit_icon_wrapper">
-                <edit class="edit_icon"/>
-              </el-icon>
-            </el-button>
+            <router-link :to="{
+              name: 'EditEquipment',
+              params: {
+                id: equipmentList[scope.$index].id,
+              }
+            }">
+              <el-button type="text">
+                <el-icon
+                  :size="25" class="edit_icon_wrapper">
+                  <edit class="edit_icon"/>
+                </el-icon>
+              </el-button>
+            </router-link>
 
             <el-popconfirm
               confirmButtonText="Да"
@@ -53,8 +59,4 @@ import EquipmentListPaginator from '@/components/EquipmentListPaginator.vue';
 
 const { equipmentList } = useEquipmentList();
 const { deleteEquipment } = useDeleteEquipment();
-
-function handleEdit(id) {
-  console.log(id);
-}
 </script>

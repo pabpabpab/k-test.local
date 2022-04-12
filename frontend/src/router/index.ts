@@ -4,8 +4,17 @@ import AddEquipmentView from '../views/AddEquipmentView.vue';
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
+    redirect: { name: 'AddEquipment' },
+  },
+  {
+    path: '/add-equipment',
     name: 'AddEquipment',
-    component: AddEquipmentView,
+    component: () => import('../views/AddEquipmentView.vue'),
+  },
+  {
+    path: '/edit-equipment/:id',
+    name: 'EditEquipment',
+    component: () => import('../views/AddEquipmentView.vue'),
   },
   {
     path: '/equipment-list',

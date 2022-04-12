@@ -17,7 +17,16 @@ const state: EquipmentState = {
   perPage: 5,
 
   equipmentTypes: [],
-  singleEquipment: {},
+  singleEquipment: {
+    id: 0,
+    typeData: {
+      typeId: 0,
+      typeMask: '',
+      typeName: '',
+    },
+    serialNumber: '',
+    comment: '',
+  },
 };
 
 export default state;

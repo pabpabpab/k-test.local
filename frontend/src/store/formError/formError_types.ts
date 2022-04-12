@@ -1,10 +1,10 @@
 export interface FormErrorState {
   formError: {
     typeId?: string[],
-    serialNumbers?: string[],
-    repeatedSerialNumbers?: string[],
-    mismatchingSerialNumbers?: string[],
-    nonUniqueSerialNumbers?: string[],
+    serialNumber?: string[],
+    repeatedSerialNumber?: string[],
+    mismatchingSerialNumber?: string[],
+    nonUniqueSerialNumber?: string[],
     // [index in string]?: string[]
   }, // ключ - имя input'а, значение - массив ошибок
 }

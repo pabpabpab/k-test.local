@@ -28,7 +28,7 @@ const getters: GetterTree<FormErrorState, RootState> = {
   },
 
   [GT.GET_REPEATED_SERIAL_NUMBERS]: (state) => {
-    const key = 'repeatedSerialNumbers';
+    const key = 'repeatedSerialNumber';
     const errorObj = state.formError;
     if (Object.prototype.hasOwnProperty.call(errorObj, key)) {
       return errorObj[key];
@@ -37,7 +37,7 @@ const getters: GetterTree<FormErrorState, RootState> = {
   },
 
   [GT.GET_MISMATCHING_SERIAL_NUMBERS]: (state) => {
-    const key = 'mismatchingSerialNumbers';
+    const key = 'mismatchingSerialNumber';
     const errorObj = state.formError;
     if (Object.prototype.hasOwnProperty.call(errorObj, key)) {
       return errorObj[key];
@@ -46,7 +46,7 @@ const getters: GetterTree<FormErrorState, RootState> = {
   },
 
   [GT.GET_NON_UNIQUE_SERIAL_NUMBERS]: (state) => {
-    const key = 'nonUniqueSerialNumbers';
+    const key = 'nonUniqueSerialNumber';
     const errorObj = state.formError;
     if (Object.prototype.hasOwnProperty.call(errorObj, key)) {
       return errorObj[key];

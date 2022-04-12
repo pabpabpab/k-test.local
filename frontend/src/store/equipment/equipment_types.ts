@@ -1,3 +1,20 @@
+export interface EquipmentTypeItem {
+  id: number,
+  name: string,
+  mask: string,
+}
+
+export interface EquipmentObject {
+  id: number,
+  typeData: {
+    typeId: number,
+    typeMask: string,
+    typeName: string,
+  },
+  serialNumber: string,
+  comment: string,
+}
+
 export interface EquipmentState {
   url: {
     list: string,
@@ -8,13 +25,13 @@ export interface EquipmentState {
     listOfTypes: string,
   },
 
-  equipment: object[],
+  equipment: EquipmentObject[],
   totalCount: number,
   pageCount: number,
   currentPage: number,
   perPage: number,
-  equipmentTypes: object[],
-  singleEquipment: object,
+  equipmentTypes: EquipmentTypeItem[],
+  singleEquipment: EquipmentObject,
 }
 
 // eslint-disable-next-line
@@ -49,22 +66,4 @@ export enum EquipmentActionTypes {
   UPDATE_EQUIPMENT = 'UPDATE_EQUIPMENT',
   DELETE_EQUIPMENT = 'DELETE_EQUIPMENT',
   VALIDATE_SAVE_FORM = 'VALIDATE_SAVE_FORM',
-}
-
-export interface EquipmentTypeItem {
-  id: number,
-  name: string,
-  mask: string,
-}
-
-export interface EquipmentObject {
-  id: number,
-  typeData: {
-    typeId: number,
-    typeMask: string,
-    typeName: string,
-    typeRegexp: string,
-  },
-  serialNumbers: string,
-  comment: string,
 }

@@ -29,7 +29,7 @@ class StoreEquipmentRequest extends FormRequest
     {
         return [
             'typeData.typeId' => ['required'],
-            'serialNumbers' => [
+            'serialNumber' => [
                 new UniqueSerialNumbers()
             ],
         ];
@@ -39,7 +39,7 @@ class StoreEquipmentRequest extends FormRequest
     {
         return [
             'typeData.typeId' => '«Тип оборудования»',
-            'serialNumbers' => '«Серийные номера»',
+            'serialNumber' => '«Серийные номера»',
         ];
     }
 

@@ -2,7 +2,7 @@
   <el-config-provider :locale="ru">
     <TopMenu/>
     <div class="content_wrapper">
-      <router-view/>
+      <router-view :key="$route.path"/>
     </div>
     <LoadingScreen/>
   </el-config-provider>

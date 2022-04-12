@@ -12,6 +12,7 @@ declare module '@vue/runtime-core' {
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     EquipmentList: typeof import('./src/components/EquipmentList.vue')['default']
+    EquipmentListPaginator: typeof import('./src/components/EquipmentListPaginator.vue')['default']
     LoadingScreen: typeof import('./src/components/LoadingScreen.vue')['default']
     TopMenu: typeof import('./src/components/menu/TopMenu.vue')['default']
   }

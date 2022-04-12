@@ -33,9 +33,9 @@ const saveEquipment: ActionTree<EquipmentState, RootState> = {
 
     // проверка серийных номеров на соответствие маске
     const regexpValue = getRegExpForMask(equipment.typeData.typeMask);
-    const mismatchingNumbersArr = getRegExpMismatches(equipment.serialNumbers, regexpValue);
+    const mismatchingNumbersArr = getRegExpMismatches(equipment.serialNumber, regexpValue);
     if (mismatchingNumbersArr.length > 0) {
-      const errorObj = { mismatchingSerialNumbers: mismatchingNumbersArr };
+      const errorObj = { mismatchingSerialNumber: mismatchingNumbersArr };
       commit(ErrorMutation.SET_FORM_ERROR, errorObj, { root: true });
       return;
     }
@@ -45,9 +45,9 @@ const saveEquipment: ActionTree<EquipmentState, RootState> = {
     const url = state.url.add;
     dispatch(HttpAction.POST_JSON, { url, data: equipment }, { root: true })
       .then((data) => {
-        if (data?.backValidatorErrors?.serialNumbers) {
-          const nonUniqueNumbersArr = data.backValidatorErrors.serialNumbers[0].split(',');
-          const errorObj = { nonUniqueSerialNumbers: nonUniqueNumbersArr };
+        if (data?.backValidatorErrors?.serialNumber) {
+          const nonUniqueNumbersArr = data.backValidatorErrors.serialNumber[0].split(',');
+          const errorObj = { nonUniqueSerialNumber: nonUniqueNumbersArr };
           commit(ErrorMutation.SET_FORM_ERROR, errorObj, { root: true });
           return;
         }
