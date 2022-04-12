@@ -6,7 +6,6 @@ use App\Rules\UniqueSerialNumbers;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Validation\Rule;
 
 class StoreEquipmentRequest extends FormRequest
 {
@@ -25,30 +24,21 @@ class StoreEquipmentRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'typeData.typeId' => ['required'],
             'serialNumber' => [
                 new UniqueSerialNumbers()
             ],
         ];
     }
 
-    public function attributes()
-    {
-        return [
-            'typeData.typeId' => '«Тип оборудования»',
-            'serialNumber' => '«Серийные номера»',
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-        ];
-    }
-
+    /**
+     * Handle a failed validation attempt.
+     *
+     * @param \Illuminate\Contracts\Validation\Validator
+     * @return void
+     */
     protected function failedValidation(Validator $validator): void
     {
         $errors = $validator->errors();

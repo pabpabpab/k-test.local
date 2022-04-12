@@ -19,7 +19,8 @@ export default function getSavingFormValidationErrors(equipment: EquipmentObject
 
   if (serialNumber.length === 0) {
     error.serialNumber = error?.serialNumber ? error.serialNumber : [];
-    error.serialNumber.push('Введите серийные номера');
+    const text = equipment.id ? 'Введите серийный номер' : 'Введите серийные номера';
+    error.serialNumber.push(text);
   }
 
   if (serialNumber.length > 0) {

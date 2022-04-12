@@ -13,7 +13,7 @@ class SaveService
      * @param \Illuminate\Http\Request $request
      * @return bool
      */
-    public function save(Request $request): bool
+    public function create(Request $request): bool
     {
         $typeId = $request->input('typeData.typeId');
         $comment = $request->input('comment') ?? '';
@@ -31,5 +31,20 @@ class SaveService
         }
 
         return Equipment::insert($data);
+    }
+
+    /**
+     * Update single equipment.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Equipment $equipment
+     * @return bool
+     */
+    public function update(Request $request, Equipment $equipment): bool
+    {
+        $equipment->equipment_type_id = $request->input('typeData.typeId');
+        $equipment->comment = $request->input('comment') ?? '';
+        $equipment->serial_Number = $request->input('serialNumber');
+        return $equipment->save();
     }
 }

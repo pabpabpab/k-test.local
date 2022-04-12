@@ -34,13 +34,13 @@ class EquipmentController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreEquipmentRequest  $request
+     * @param  \App\Services\Equipment\SaveService  $service
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(StoreEquipmentRequest $request, SaveService $service): JsonResponse
     {
-        // info($request);
         return response()->json([
-            'saveSuccess' => $service->save($request)
+            'saveSuccess' => $service->create($request)
         ]);
     }
 
@@ -59,12 +59,15 @@ class EquipmentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateEquipmentRequest  $request
+     * @param  \App\Services\Equipment\SaveService  $service
      * @param  \App\Models\Equipment  $equipment
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(UpdateEquipmentRequest $request, Equipment $equipment)
+    public function update(UpdateEquipmentRequest $request, SaveService $service, Equipment $equipment): JsonResponse
     {
-        //
+        return response()->json([
+            'saveSuccess' => $service->update($request, $equipment)
+        ]);
     }
 
     /**

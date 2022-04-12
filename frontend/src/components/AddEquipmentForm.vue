@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h1>Добавить оборудование</h1>
+    <h1>
+      {{ localEquipment.id ? 'Редактировать оборудование' : 'Добавить оборудование' }}
+    </h1>
     <div class="content_block content_block_of_equipment_form">
 
       <div class="equipment_form__input_container">
@@ -28,7 +30,9 @@
       </div>
 
       <div class="equipment_form__input_container">
-        <p class="equipment_form__property_header">Серийные номера</p>
+        <p class="equipment_form__property_header">
+          {{ localEquipment.id ? 'Серийный номер' : 'Серийные номера' }}
+        </p>
         <!-- eslint-disable-next-line  -->
         <textarea
           v-model="localEquipment.serialNumber"
@@ -60,7 +64,7 @@
         </p>
 
         <p
-          v-show="error.mismatchingSerialNumber.length"
+          v-show="!localEquipment.id && error.mismatchingSerialNumber.length"
           class="equipment_form__validation_message_black">
           Ниже указаны номера не соответствующие выбранной маске
           <span
@@ -80,7 +84,17 @@
         </p>
 
         <p
-          v-show="error.nonUniqueSerialNumber.length"
+          v-show="localEquipment.id && error.mismatchingSerialNumber.length"
+          class="equipment_form__validation_message">
+          Введенный номер не соответствует выбранной маске
+          <span
+            v-text="localEquipment.typeData.typeMask"
+            class="equipment_form__validation_message_black_bold">
+          </span>
+        </p>
+
+        <p
+          v-show="!localEquipment.id && error.nonUniqueSerialNumber.length"
           class="equipment_form__validation_message_black">
           Ниже указаны номера которые уже есть в базе,
           эти номера исключены из списка:<br>
@@ -94,6 +108,12 @@
             class='equipment_form__validation_message_black_bold'>
             Нажмите кнопку «Сохранить» чтобы сохранить оставшийся список.
           </span>
+        </p>
+
+        <p
+          v-show="localEquipment.id && error.nonUniqueSerialNumber.length"
+          class="equipment_form__validation_message">
+          Такой номер уже есть в базе
         </p>
       </div>
 
@@ -121,14 +141,33 @@
 <script setup lang="ts">
 import useEquipmentTypes from '@/composables/useEquipmentTypes';
 import useTextareaHeightFitter from '@/composables/useTextareaHeightFitter';
+import useValidEquipment from '@/composables/useValidEquipment';
 import useSaveEquipment from '@/composables/useSaveEquipment';
+import useLoadSingleEquipmentForEditing from '@/composables/useLoadSingleEquipmentForEditing';
+import { computed, reactive, watch } from 'vue';
+import { EquipmentObject } from '@/store/equipment/equipment_types';
+
+const localEquipment = reactive({
+  id: 0,
+  typeData: {
+    typeId: 0,
+    typeMask: '',
+    typeName: '',
+  },
+  serialNumber: '',
+  comment: '',
+} as EquipmentObject);
 
 const { equipmentTypes } = useEquipmentTypes();
 const { fitTextareaHeight } = useTextareaHeightFitter();
-const {
-  localEquipment,
-  error,
-  validateForm,
-  saveEquipment,
-} = useSaveEquipment();
+const { error, validateForm } = useValidEquipment(localEquipment);
+const { saveEquipment } = useSaveEquipment(localEquipment);
+const { singleEquipment } = useLoadSingleEquipmentForEditing();
+
+watch(singleEquipment, (value: EquipmentObject) => {
+  if (!value?.id) {
+    return;
+  }
+  Object.assign(localEquipment, value);
+});
 </script>

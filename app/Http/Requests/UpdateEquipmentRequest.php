@@ -2,7 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\UniqueSerialNumbers;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\Rule;
 
 class UpdateEquipmentRequest extends FormRequest
 {
@@ -13,7 +17,7 @@ class UpdateEquipmentRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,10 +25,42 @@ class UpdateEquipmentRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            //
+            'serialNumber' => [
+                Rule::unique('equipments', 'serial_number')
+                    ->ignore($this->equipment)
+            ],
         ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages(): array
+    {
+        return [
+            'unique' => 'Оборудование с таким серийным номером уже существует.',
+        ];
+    }
+
+    /**
+     * Handle a failed validation attempt.
+     *
+     * @param \Illuminate\Contracts\Validation\Validator
+     * @return void
+     */
+    protected function failedValidation(Validator $validator): void
+    {
+        $errors = $validator->errors();
+
+        throw new HttpResponseException(
+            response()->json([
+                'backValidatorErrors' => $errors
+            ])
+        );
     }
 }
