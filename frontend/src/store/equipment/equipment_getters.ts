@@ -5,6 +5,7 @@ import {
   EquipmentGetterTypes as GT,
   EquipmentObject,
   EquipmentTypeItem,
+  SearchObject,
 } from '@/store/equipment/equipment_types';
 
 const getters: GetterTree<EquipmentState, RootState> = {
@@ -16,6 +17,7 @@ const getters: GetterTree<EquipmentState, RootState> = {
   [GT.PER_PAGE]: (state): number => state.perPage,
   [GT.EQUIPMENT_TYPE_LIST]: (state): EquipmentTypeItem[] => state.equipmentTypes,
   [GT.SINGLE_EQUIPMENT]: (state): EquipmentObject => ({ ...state.singleEquipment }),
+  [GT.SEARCH_OBJECT]: (state): SearchObject => ({ ...state.searchObject }),
 };
 
 export default getters;

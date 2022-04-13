@@ -6,8 +6,25 @@
       <el-table :data="equipmentList" height="85%" class="equipment_list_table">
         <el-table-column prop="id" label="ID" width="80"/>
         <el-table-column prop="typeData.typeName" label="Тип оборудования" width="220"/>
-        <el-table-column prop="serialNumber" label="Серийный номер" width="220"/>
-        <el-table-column prop="comment" label="Примечание" align="left"/>
+
+        <el-table-column prop="serialNumber" label="Серийный номер" width="220">
+          <template #header>
+            <el-input
+              v-model="searchText.serial_number"
+              @input="doSearch('serial_number')"
+              placeholder="Серийный номер" />
+          </template>
+        </el-table-column>
+
+        <el-table-column prop="comment" label="Примечание" align="left">
+          <template #header>
+            <el-input
+              v-model="searchText.comment"
+              @input="doSearch('comment')"
+              placeholder="Примечание" />
+          </template>
+        </el-table-column>
+
         <el-table-column label="Действия" width="100" align="left">
           <template #default="scope">
 
@@ -54,8 +71,14 @@
 <script setup lang="ts">
 import { Edit, Delete } from '@element-plus/icons-vue';
 import useEquipmentList from '@/composables/useEquipmentList';
+import useSearchEquipment from '@/composables/useSearchEquipment';
 import useDeleteEquipment from '@/composables/useDeleteEquipment';
 import EquipmentListPaginator from '@/components/EquipmentListPaginator.vue';
+
+const {
+  searchText,
+  doSearch,
+} = useSearchEquipment();
 
 const { equipmentList } = useEquipmentList();
 const { deleteEquipment } = useDeleteEquipment();

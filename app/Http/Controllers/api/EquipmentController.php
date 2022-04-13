@@ -24,10 +24,11 @@ class EquipmentController extends Controller
     public function index(Request $request): JsonResponse
     {
         $perPage = $request->query('per_page', 5);
-        return EquipmentResource::collection(Equipment::with('equipment_type')
+        return EquipmentResource::collection(
+            Equipment::with('equipment_type')
             ->orderBy('id', 'desc')
-            ->paginate($perPage))
-            ->response();
+            ->paginate($perPage)
+        )->response();
     }
 
     /**

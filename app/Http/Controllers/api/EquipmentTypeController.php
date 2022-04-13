@@ -21,3 +21,5 @@ class EquipmentTypeController extends Controller
             ->response();
     }
 }
+
+// php artisan make:controller api/EquipmentTypeController

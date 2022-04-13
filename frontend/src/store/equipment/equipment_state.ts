@@ -1,4 +1,4 @@
-import { EquipmentState } from './equipment_types';
+import { EquipmentState, SearchObject } from './equipment_types';
 
 const state: EquipmentState = {
   url: {
@@ -7,6 +7,7 @@ const state: EquipmentState = {
     add: '/equipment', // /api/equipment/{id}
     update: '/equipment', // /api/equipment/{id}
     delete: '/equipment', // /api/equipment/{id}
+    search: '/search-equipment', // /api/search-equipment
     listOfTypes: '/equipment-types', // /api/equipment-types
   },
 
@@ -17,6 +18,7 @@ const state: EquipmentState = {
   perPage: 5,
 
   equipmentTypes: [],
+
   singleEquipment: {
     id: 0,
     typeData: {
@@ -26,6 +28,11 @@ const state: EquipmentState = {
     },
     serialNumber: '',
     comment: '',
+  },
+
+  searchObject: {
+    field: '',
+    text: '',
   },
 };
 

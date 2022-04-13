@@ -15,6 +15,11 @@ export interface EquipmentObject {
   comment: string,
 }
 
+export interface SearchObject {
+  field: 'serial_number' | 'comment' | '',
+  text: string,
+}
+
 export interface EquipmentState {
   url: {
     list: string,
@@ -22,6 +27,7 @@ export interface EquipmentState {
     add: string,
     update: string,
     delete: string,
+    search: string,
     listOfTypes: string,
   },
 
@@ -32,6 +38,7 @@ export interface EquipmentState {
   perPage: number,
   equipmentTypes: EquipmentTypeItem[],
   singleEquipment: EquipmentObject,
+  searchObject: SearchObject,
 }
 
 // eslint-disable-next-line
@@ -44,6 +51,7 @@ export enum EquipmentGetterTypes {
   ACTUAL_EQUIPMENT_COUNT_ON_CURRENT_PAGE = 'ACTUAL_EQUIPMENT_COUNT_ON_CURRENT_PAGE',
   EQUIPMENT_TYPE_LIST = 'EQUIPMENT_TYPE_LIST',
   SINGLE_EQUIPMENT = 'SINGLE_EQUIPMENT',
+  SEARCH_OBJECT = 'SEARCH_OBJECT',
 }
 
 // eslint-disable-next-line
@@ -55,6 +63,7 @@ export enum EquipmentMutationTypes {
   SET_PER_PAGE = 'SET_PER_PAGE',
   SET_SINGLE_EQUIPMENT = 'SET_SINGLE_EQUIPMENT',
   SET_EQUIPMENT_TYPES = 'SET_EQUIPMENT_TYPES',
+  SET_SEARCH_OBJECT = 'SET_SEARCH_OBJECT',
 }
 
 // eslint-disable-next-line
@@ -66,4 +75,5 @@ export enum EquipmentActionTypes {
   UPDATE_EQUIPMENT = 'UPDATE_EQUIPMENT',
   DELETE_EQUIPMENT = 'DELETE_EQUIPMENT',
   VALIDATE_SAVE_FORM = 'VALIDATE_SAVE_FORM',
+  SEARCH_EQUIPMENT = 'SEARCH_EQUIPMENT',
 }

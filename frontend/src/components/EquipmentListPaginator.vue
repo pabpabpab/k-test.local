@@ -14,11 +14,11 @@
 
 <script setup lang="ts">
 import { useStore } from '@/store';
-import { computed } from 'vue';
+import { computed, watch } from 'vue';
 import {
   EquipmentGetterTypes as GT,
   EquipmentMutationTypes as MT,
-  EquipmentActionTypes as AT,
+  EquipmentActionTypes as AT, SearchObject,
 } from '../store/equipment/equipment_types';
 
 const store = useStore();
@@ -27,13 +27,22 @@ const totalCount = computed(() => store.getters[`equipment/${GT.TOTAL_COUNT}`]);
 const currentPage = computed(() => store.getters[`equipment/${GT.CURRENT_PAGE}`]);
 const pageCount = computed(() => store.getters[`equipment/${GT.PAGE_COUNT}`]);
 const perPage = computed(() => store.getters[`equipment/${GT.PER_PAGE}`]);
+const searchObject = computed(() => ({ ...store.getters[`equipment/${GT.SEARCH_OBJECT}`] }));
 
 function changePerPage(value) {
   store.commit(`equipment/${MT.SET_PER_PAGE}`, value);
-  store.dispatch(`equipment/${AT.LOAD_EQUIPMENT}`, 1);
+  if (searchObject.value.text.length > 0) {
+    store.dispatch(`equipment/${AT.SEARCH_EQUIPMENT}`, { searchObject: searchObject.value, pageNumber: 1 });
+  } else {
+    store.dispatch(`equipment/${AT.LOAD_EQUIPMENT}`, 1);
+  }
 }
 
 function showEquipmentByPageNumber(pageNumber) {
-  store.dispatch(`equipment/${AT.LOAD_EQUIPMENT}`, pageNumber);
+  if (searchObject.value.text.length > 0) {
+    store.dispatch(`equipment/${AT.SEARCH_EQUIPMENT}`, { searchObject: searchObject.value, pageNumber });
+  } else {
+    store.dispatch(`equipment/${AT.LOAD_EQUIPMENT}`, pageNumber);
+  }
 }
 </script>

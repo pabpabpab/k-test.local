@@ -4,6 +4,7 @@ import {
   EquipmentMutationTypes as MT,
   EquipmentTypeItem,
   EquipmentObject,
+  SearchObject,
 } from '@/store/equipment/equipment_types';
 
 const mutations: MutationTree<EquipmentState> = {
@@ -24,6 +25,9 @@ const mutations: MutationTree<EquipmentState> = {
   },
   [MT.SET_SINGLE_EQUIPMENT](state, data: EquipmentObject): void {
     state.singleEquipment = { ...data };
+  },
+  [MT.SET_SEARCH_OBJECT](state, data: SearchObject): void {
+    state.searchObject = { ...data };
   },
   [MT.SET_EQUIPMENT_TYPES](state, data: EquipmentTypeItem[]): void {
     state.equipmentTypes = [...data];
