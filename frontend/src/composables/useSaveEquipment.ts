@@ -1,8 +1,9 @@
 /* eslint no-param-reassign: off */
 
 import { useStore } from '@/store';
+import { ModuleTypes as Module } from '@/store/types';
 import {
-  EquipmentActionTypes as AT,
+  EquipmentActionTypes as Action,
   EquipmentObject,
 } from '@/store/equipment/equipment_types';
 import excludeRepeatedSerialNumber from '../helpers/validation/equipment/excludeRepeatedSerialNumber';
@@ -12,10 +13,10 @@ export default function useSaveEquipment(localEquipment: EquipmentObject): objec
 
   function saveEquipment() {
     if (localEquipment.id) {
-      store.dispatch(`equipment/${AT.UPDATE_EQUIPMENT}`, localEquipment);
+      store.dispatch(`${Module.EQUIPMENT}/${Action.UPDATE_EQUIPMENT}`, localEquipment);
     } else {
       localEquipment.serialNumber = excludeRepeatedSerialNumber(localEquipment.serialNumber);
-      store.dispatch(`equipment/${AT.SAVE_EQUIPMENT}`, localEquipment);
+      store.dispatch(`${Module.EQUIPMENT}/${Action.SAVE_EQUIPMENT}`, localEquipment);
     }
   }
 

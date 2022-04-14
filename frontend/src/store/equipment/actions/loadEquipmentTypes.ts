@@ -13,7 +13,6 @@ const loadEquipmentTypes: ActionTree<EquipmentState, RootState> = {
     commit(RootMutation.SET_LOADING_FLAG, true, { root: true });
     dispatch(HttpActionTypes.GET_JSON, url, { root: true })
       .then((data) => {
-        // console.log(data);
         commit(MT.SET_EQUIPMENT_TYPES, data.data);
       })
       .finally(() => {

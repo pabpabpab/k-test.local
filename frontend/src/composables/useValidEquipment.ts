@@ -9,23 +9,24 @@ import {
   reactive,
   watch,
 } from 'vue';
-import { EquipmentActionTypes as AT, EquipmentObject } from '@/store/equipment/equipment_types';
+import { ModuleTypes as Module } from '@/store/types';
+import { EquipmentActionTypes as Action, EquipmentObject } from '@/store/equipment/equipment_types';
 import {
-  FormErrorGetterTypes as GT,
-  FormErrorMutationTypes as MT,
+  FormErrorGetterTypes as Getter,
+  FormErrorMutationTypes as Mutation,
 } from '@/store/formError/formError_types';
 
 export default function useSaveEquipment(localEquipment: EquipmentObject): object {
   const store = useStore();
 
-  const getMismatchingSerialNumber = computed(() => [...store.getters[GT.GET_MISMATCHING_SERIAL_NUMBERS]]);
-  const getNonUniqueSerialNumber = computed(() => [...store.getters[GT.GET_NON_UNIQUE_SERIAL_NUMBERS]]);
-  const getRepeatedSerialNumber = computed(() => [...store.getters[GT.GET_REPEATED_SERIAL_NUMBERS]]);
+  const getMismatchingSerialNumber = computed(() => [...store.getters[Getter.GET_MISMATCHING_SERIAL_NUMBERS]]);
+  const getNonUniqueSerialNumber = computed(() => [...store.getters[Getter.GET_NON_UNIQUE_SERIAL_NUMBERS]]);
+  const getRepeatedSerialNumber = computed(() => [...store.getters[Getter.GET_REPEATED_SERIAL_NUMBERS]]);
   const getUserSerialNumber = computed(() => localEquipment.serialNumber);
 
   const error = reactive({
-    typeId: computed(() => store.getters[GT.GET_FORM_ERROR]('typeId')),
-    serialNumber: computed(() => store.getters[GT.GET_FORM_ERROR]('serialNumber')),
+    typeId: computed(() => store.getters[Getter.GET_FORM_ERROR]('typeId')),
+    serialNumber: computed(() => store.getters[Getter.GET_FORM_ERROR]('serialNumber')),
     repeatedSerialNumber: getRepeatedSerialNumber,
     mismatchingSerialNumber: getMismatchingSerialNumber,
     nonUniqueSerialNumber: getNonUniqueSerialNumber,
@@ -69,11 +70,11 @@ export default function useSaveEquipment(localEquipment: EquipmentObject): objec
   }
 
   function validateForm() {
-    store.dispatch(`equipment/${AT.VALIDATE_SAVE_FORM}`, localEquipment);
+    store.dispatch(`${Module.EQUIPMENT}/${Action.VALIDATE_SAVE_FORM}`, localEquipment);
   }
 
   onMounted(() => {
-    store.commit(MT.RESET_FORM_ERROR);
+    store.commit(Mutation.RESET_FORM_ERROR);
   });
 
   return {

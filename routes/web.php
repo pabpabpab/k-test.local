@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\SpaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,12 +13,14 @@ use \App\Http\Controllers\SpaController;
 |
 */
 
-/*
-Route::get('/{any}', [SpaController::class, 'index'])
-    ->where('any', '.*');
-*/
-
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('index');
+})->name('main');
 
+Route::get('/admin', function () {
+    return view('admin.index');
+})->middleware('auth')->name('admin');
+
+Route::get('/home', function () {
+    return redirect('/');
+});

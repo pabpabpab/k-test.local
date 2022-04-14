@@ -14,35 +14,42 @@
 
 <script setup lang="ts">
 import { useStore } from '@/store';
-import { computed, watch } from 'vue';
+import { computed } from 'vue';
+import { ModuleTypes as Module } from '@/store/types';
 import {
-  EquipmentGetterTypes as GT,
-  EquipmentMutationTypes as MT,
-  EquipmentActionTypes as AT, SearchObject,
+  EquipmentGetterTypes as Getter,
+  EquipmentMutationTypes as Mutation,
+  EquipmentActionTypes as Action,
 } from '../store/equipment/equipment_types';
 
 const store = useStore();
 
-const totalCount = computed(() => store.getters[`equipment/${GT.TOTAL_COUNT}`]);
-const currentPage = computed(() => store.getters[`equipment/${GT.CURRENT_PAGE}`]);
-const pageCount = computed(() => store.getters[`equipment/${GT.PAGE_COUNT}`]);
-const perPage = computed(() => store.getters[`equipment/${GT.PER_PAGE}`]);
-const searchObject = computed(() => ({ ...store.getters[`equipment/${GT.SEARCH_OBJECT}`] }));
+const totalCount = computed(() => store.getters[`${Module.EQUIPMENT}/${Getter.TOTAL_COUNT}`]);
+const currentPage = computed(() => store.getters[`${Module.EQUIPMENT}/${Getter.CURRENT_PAGE}`]);
+const pageCount = computed(() => store.getters[`${Module.EQUIPMENT}/${Getter.PAGE_COUNT}`]);
+const perPage = computed(() => store.getters[`${Module.EQUIPMENT}/${Getter.PER_PAGE}`]);
+const searchObject = computed(() => ({ ...store.getters[`${Module.EQUIPMENT}/${Getter.SEARCH_OBJECT}`] }));
 
 function changePerPage(value) {
-  store.commit(`equipment/${MT.SET_PER_PAGE}`, value);
+  store.commit(`${Module.EQUIPMENT}/${Mutation.SET_PER_PAGE}`, value);
   if (searchObject.value.text.length > 0) {
-    store.dispatch(`equipment/${AT.SEARCH_EQUIPMENT}`, { searchObject: searchObject.value, pageNumber: 1 });
+    store.dispatch(`${Module.EQUIPMENT}/${Action.SEARCH_EQUIPMENT}`, {
+      searchObject: searchObject.value,
+      pageNumber: 1,
+    });
   } else {
-    store.dispatch(`equipment/${AT.LOAD_EQUIPMENT}`, 1);
+    store.dispatch(`${Module.EQUIPMENT}/${Action.LOAD_EQUIPMENT}`, 1);
   }
 }
 
 function showEquipmentByPageNumber(pageNumber) {
   if (searchObject.value.text.length > 0) {
-    store.dispatch(`equipment/${AT.SEARCH_EQUIPMENT}`, { searchObject: searchObject.value, pageNumber });
+    store.dispatch(`${Module.EQUIPMENT}/${Action.SEARCH_EQUIPMENT}`, {
+      searchObject: searchObject.value,
+      pageNumber,
+    });
   } else {
-    store.dispatch(`equipment/${AT.LOAD_EQUIPMENT}`, pageNumber);
+    store.dispatch(`${Module.EQUIPMENT}/${Action.LOAD_EQUIPMENT}`, pageNumber);
   }
 }
 </script>

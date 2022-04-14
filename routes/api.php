@@ -2,9 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\api\EquipmentController;
-use \App\Http\Controllers\api\EquipmentSearchController;
-use \App\Http\Controllers\api\EquipmentTypeController;
+use \App\Http\Controllers\Api\EquipmentController;
+use \App\Http\Controllers\Api\EquipmentSearchController;
+use \App\Http\Controllers\Api\EquipmentTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,16 +30,12 @@ Route::post('/equipment', [EquipmentController::class, 'store']);
 Route::put('/equipment/{equipment}',  [EquipmentController::class, 'update']);
 Route::delete('/equipment/{equipment}',  [EquipmentController::class, 'destroy']);
 */
+
 Route::apiResource('equipment', EquipmentController::class);
 
 Route::post('/search-equipment', [EquipmentSearchController::class, 'search']);
 
 Route::get('/equipment-types', [EquipmentTypeController::class, 'index']);
 
-/*
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-*/
 
 

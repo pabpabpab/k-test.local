@@ -18,6 +18,7 @@ export function useStore() {
 
 export const store = createStore<RootState>({
   state: {
+    tokenUrl: '/sanctum/csrf-cookie',
     apiUrlPrefix: '/api',
     loadingFlag: false,
   },

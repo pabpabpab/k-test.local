@@ -1,19 +1,20 @@
 import { ElMessage } from 'element-plus';
 import { computed } from 'vue';
+import { ModuleTypes as Module } from '@/store/types';
 import {
-  EquipmentActionTypes as AT,
-  EquipmentGetterTypes as GT,
+  EquipmentActionTypes as Action,
+  EquipmentGetterTypes as Getter,
 } from '@/store/equipment/equipment_types';
 import { useStore } from '@/store';
 
 export default function useDeleteEquipment(): object {
   const store = useStore();
 
-  const actualItemCount = computed(() => store.getters[`equipment/${GT.ACTUAL_EQUIPMENT_COUNT_ON_CURRENT_PAGE}`]);
-  const currentPageNumber = computed(() => store.getters[`equipment/${GT.CURRENT_PAGE}`]);
+  const actualItemCount = computed(() => store.getters[`equipment/${Getter.ACTUAL_EQUIPMENT_COUNT_ON_CURRENT_PAGE}`]);
+  const currentPageNumber = computed(() => store.getters[`equipment/${Getter.CURRENT_PAGE}`]);
 
   function deleteEquipment(id: number) {
-    store.dispatch(`equipment/${AT.DELETE_EQUIPMENT}`, id)
+    store.dispatch(`${Module.EQUIPMENT}/${Action.DELETE_EQUIPMENT}`, id)
       .then((success) => {
         if (!success) {
           ElMessage({
@@ -37,7 +38,7 @@ export default function useDeleteEquipment(): object {
 
         newPageNumber = newPageNumber < 1 ? 1 : newPageNumber;
 
-        store.dispatch(`equipment/${AT.LOAD_EQUIPMENT}`, newPageNumber);
+        store.dispatch(`${Module.EQUIPMENT}/${Action.LOAD_EQUIPMENT}`, newPageNumber);
       });
   }
 

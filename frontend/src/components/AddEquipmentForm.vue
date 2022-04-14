@@ -144,7 +144,7 @@ import useTextareaHeightFitter from '@/composables/useTextareaHeightFitter';
 import useValidEquipment from '@/composables/useValidEquipment';
 import useSaveEquipment from '@/composables/useSaveEquipment';
 import useLoadSingleEquipmentForEditing from '@/composables/useLoadSingleEquipmentForEditing';
-import { computed, reactive, watch } from 'vue';
+import { reactive, watch } from 'vue';
 import { EquipmentObject } from '@/store/equipment/equipment_types';
 
 const localEquipment = reactive({

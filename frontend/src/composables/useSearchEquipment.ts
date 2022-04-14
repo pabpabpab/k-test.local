@@ -2,9 +2,10 @@
 
 import { reactive } from 'vue';
 import { useStore } from '@/store';
+import { ModuleTypes as Module } from '@/store/types';
 import {
-  EquipmentMutationTypes as MT,
-  EquipmentActionTypes as AT,
+  EquipmentMutationTypes as Mutation,
+  EquipmentActionTypes as Action,
   SearchObject,
 } from '@/store/equipment/equipment_types';
 
@@ -50,8 +51,8 @@ export default function useSearchEquipment(): object {
       text: searchText[field as keyof typeof searchText],
     } as SearchObject;
 
-    store.commit(`equipment/${MT.SET_SEARCH_OBJECT}`, searchObject);
-    store.dispatch(`equipment/${AT.SEARCH_EQUIPMENT}`, { searchObject, pageNumber: 1 });
+    store.commit(`${Module.EQUIPMENT}/${Mutation.SET_SEARCH_OBJECT}`, searchObject);
+    store.dispatch(`${Module.EQUIPMENT}/${Action.SEARCH_EQUIPMENT}`, { searchObject, pageNumber: 1 });
   }
 
   function resetAnotherSearchTextExcludingCurrentOne(field: string) {

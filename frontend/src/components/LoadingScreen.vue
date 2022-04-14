@@ -8,11 +8,11 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { RootGetterTypes as GT } from '@/store/types';
+import { RootGetterTypes as Getter } from '@/store/types';
 import loadingIcon from '@/assets/spinner.gif';
 
 import { useStore } from '@/store';
 
 const store = useStore();
-const loadingFlag = computed(() => store.getters[GT.LOADING_FLAG]);
+const loadingFlag = computed(() => store.getters[Getter.LOADING_FLAG]);
 </script>

@@ -4,18 +4,16 @@ import { RootState } from '@/store/types';
 import { GetterTree, Module, MutationTree } from 'vuex';
 import {
   FormErrorState,
-  FormErrorMutationTypes as MT,
-  FormErrorGetterTypes as GT,
+  FormErrorMutationTypes as Mutation,
+  FormErrorGetterTypes as Getter,
 } from './formError_types';
 
 const formState: FormErrorState = {
-  formError: {
-
-  },
+  formError: {},
 };
 
 const getters: GetterTree<FormErrorState, RootState> = {
-  [GT.GET_FORM_ERROR]: (state) => (key: string): string => {
+  [Getter.GET_FORM_ERROR]: (state) => (key: string): string => {
     const errorObj = state.formError;
     if (key) {
       if (Object.prototype.hasOwnProperty.call(errorObj, key)) {
@@ -27,7 +25,7 @@ const getters: GetterTree<FormErrorState, RootState> = {
     return '';
   },
 
-  [GT.GET_REPEATED_SERIAL_NUMBERS]: (state) => {
+  [Getter.GET_REPEATED_SERIAL_NUMBERS]: (state) => {
     const key = 'repeatedSerialNumber';
     const errorObj = state.formError;
     if (Object.prototype.hasOwnProperty.call(errorObj, key)) {
@@ -36,7 +34,7 @@ const getters: GetterTree<FormErrorState, RootState> = {
     return [];
   },
 
-  [GT.GET_MISMATCHING_SERIAL_NUMBERS]: (state) => {
+  [Getter.GET_MISMATCHING_SERIAL_NUMBERS]: (state) => {
     const key = 'mismatchingSerialNumber';
     const errorObj = state.formError;
     if (Object.prototype.hasOwnProperty.call(errorObj, key)) {
@@ -45,7 +43,7 @@ const getters: GetterTree<FormErrorState, RootState> = {
     return [];
   },
 
-  [GT.GET_NON_UNIQUE_SERIAL_NUMBERS]: (state) => {
+  [Getter.GET_NON_UNIQUE_SERIAL_NUMBERS]: (state) => {
     const key = 'nonUniqueSerialNumber';
     const errorObj = state.formError;
     if (Object.prototype.hasOwnProperty.call(errorObj, key)) {
@@ -56,10 +54,10 @@ const getters: GetterTree<FormErrorState, RootState> = {
 };
 
 const mutations: MutationTree<FormErrorState> = {
-  [MT.SET_FORM_ERROR](state, data: typeof state.formError): void {
+  [Mutation.SET_FORM_ERROR](state, data: typeof state.formError): void {
     state.formError = { ...data };
   },
-  [MT.RESET_FORM_ERROR](state): void {
+  [Mutation.RESET_FORM_ERROR](state): void {
     state.formError = {};
   },
 };

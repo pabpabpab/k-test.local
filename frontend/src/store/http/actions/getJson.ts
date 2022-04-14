@@ -1,26 +1,33 @@
 import { ActionTree } from 'vuex';
 import {
   HttpState,
-  HttpMutationTypes as MT,
-  HttpActionTypes as AT,
+  HttpMutationTypes as Mutation,
+  HttpActionTypes as Action,
 } from '@/store/http/http_types';
 import { RootState } from '@/store/types';
+import getCookie from '@/helpers/cookie/getCookie';
 
 const getJson: ActionTree<HttpState, RootState> = {
-  [AT.GET_JSON]({ commit, rootState }, url: string): Promise<any> {
-    commit(MT.RESET_HTTP_ERROR);
-    return fetch(rootState.apiUrlPrefix + url, {
+  [Action.GET_JSON]({ commit, rootState }, url: string): Promise<object> {
+    return fetch(rootState.tokenUrl, {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
     })
-      .then((result) => result.json())
-      .catch((error) => {
-        console.log(error);
-        const msg = 'Ошибка get-запроса.';
-        commit(MT.SET_HTTP_ERROR, msg);
+      .then(() => {
+        commit(Mutation.RESET_HTTP_ERROR);
+        return fetch(rootState.apiUrlPrefix + url, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            'X-XSRF-TOKEN': `${getCookie('XSRF-TOKEN')}`,
+          },
+        })
+          .then((result) => result.json())
+          .catch((error) => {
+            console.log(error);
+            const msg = 'Ошибка get-запроса.';
+            commit(Mutation.SET_HTTP_ERROR, msg);
+          });
       });
   },
 };
