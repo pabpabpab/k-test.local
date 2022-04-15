@@ -1,7 +1,7 @@
 import { ActionTree } from 'vuex';
 import {
   EquipmentState,
-  EquipmentActionTypes as EquipmentAction,
+  EquipmentActionTypes as Action,
   EquipmentObject,
 } from '@/store/equipment/equipment_types';
 import { RootState } from '@/store/types';
@@ -9,7 +9,7 @@ import { FormErrorMutationTypes as ErrorMutation } from '@/store/formError/formE
 import getSavingFormValidationErrors from '@/helpers/validation/equipment/getSavingFormValidationErrors';
 
 const validateSaveForm: ActionTree<EquipmentState, RootState> = {
-  [EquipmentAction.VALIDATE_SAVE_FORM](
+  [Action.VALIDATE_SAVE_FORM](
     {
       commit,
     },

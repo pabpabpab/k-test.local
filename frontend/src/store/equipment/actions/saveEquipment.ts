@@ -1,7 +1,7 @@
 import { ActionTree } from 'vuex';
 import {
   EquipmentState,
-  EquipmentActionTypes as EquipmentAction,
+  EquipmentActionTypes as Action,
   EquipmentObject,
 } from '@/store/equipment/equipment_types';
 import { RootState, RootMutationTypes as RootMutation } from '@/store/types';
@@ -14,7 +14,7 @@ import router from '@/router';
 import { ElMessage } from 'element-plus';
 
 const saveEquipment: ActionTree<EquipmentState, RootState> = {
-  [EquipmentAction.SAVE_EQUIPMENT](
+  [Action.SAVE_EQUIPMENT](
     {
       dispatch,
       commit,

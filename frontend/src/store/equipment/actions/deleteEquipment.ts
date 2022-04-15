@@ -1,13 +1,13 @@
 import { ActionTree } from 'vuex';
 import {
   EquipmentState,
-  EquipmentActionTypes as EquipmentAction,
+  EquipmentActionTypes as Action,
 } from '@/store/equipment/equipment_types';
 import { RootState, RootMutationTypes as RootMutation } from '@/store/types';
 import { HttpActionTypes as HttpAction } from '@/store/http/http_types';
 
 const deleteEquipment: ActionTree<EquipmentState, RootState> = {
-  [EquipmentAction.DELETE_EQUIPMENT](
+  [Action.DELETE_EQUIPMENT](
     {
       dispatch,
       commit,

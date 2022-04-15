@@ -1,7 +1,7 @@
 import { ActionTree } from 'vuex';
 import {
   EquipmentState,
-  EquipmentActionTypes as EquipmentAction,
+  EquipmentActionTypes as Action,
   EquipmentObject,
 } from '@/store/equipment/equipment_types';
 import { RootState, RootMutationTypes as RootMutation } from '@/store/types';
@@ -13,7 +13,7 @@ import getRegExpMismatches from '@/helpers/validation/equipment/getRegExpMismatc
 import { ElMessage } from 'element-plus';
 
 const updateEquipment: ActionTree<EquipmentState, RootState> = {
-  [EquipmentAction.UPDATE_EQUIPMENT](
+  [Action.UPDATE_EQUIPMENT](
     {
       dispatch,
       commit,
