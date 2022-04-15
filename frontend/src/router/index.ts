@@ -17,7 +17,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('../views/AddEquipmentView.vue'),
   },
   {
-    path: '/equipment-list',
+    path: '/equipment-list/:pageNumber?',
     name: 'EquipmentList',
     component: () => import('../views/EquipmentListView.vue'),
   },

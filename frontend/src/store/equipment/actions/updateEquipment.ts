@@ -1,6 +1,7 @@
 import { ActionTree } from 'vuex';
 import {
   EquipmentState,
+  EquipmentGetterTypes as Getter,
   EquipmentActionTypes as Action,
   EquipmentObject,
 } from '@/store/equipment/equipment_types';
@@ -11,12 +12,14 @@ import getSavingFormValidationErrors from '@/helpers/validation/equipment/getSav
 import getRegExpForMask from '@/helpers/getRegExpForMask';
 import getRegExpMismatches from '@/helpers/validation/equipment/getRegExpMismatches';
 import { ElMessage } from 'element-plus';
+import router from '@/router';
 
 const updateEquipment: ActionTree<EquipmentState, RootState> = {
   [Action.UPDATE_EQUIPMENT](
     {
       dispatch,
       commit,
+      getters,
       state,
     },
     equipment: EquipmentObject,
@@ -59,6 +62,7 @@ const updateEquipment: ActionTree<EquipmentState, RootState> = {
             offset: 300,
             customClass: 'el-message_custom',
           });
+          router.push({ name: 'EquipmentList', params: { pageNumber: getters[Getter.CURRENT_PAGE] } });
         }
       })
       .finally(() => {
