@@ -1,64 +1,51 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+Задание было следующим:
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+back-end
+Необходимо реализовать API CRUD интерфейс для работы с сущностью «оборудование». Обязательные методы:
+Роут 
+Действие 
+GET: /api/equipment
+Вывод списка оборудования 
+GET: /api/equipment/{id}
+Запрос данных по id
+POST: /api/equipment
+Создание новой записи
+PUT: /api/equipment/{id}
+Редактирование записи 
+DELETE: /api/equipment/{id}
+Удаление записи 
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Для хранения информации об оборудовании используется 2 таблицы в базе данных (использовать MySQL):
+    1. «Тип оборудования» поля: код, наименование типа, маска серийного номера.
+    2. «Оборудование» поля:  код, код типа оборудования, серийный номер (уникальное поле), примечание.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+При создании новых записей в поле «серийный номер» интерфейс принимает массив номеров каждый из которых  валидируется на соответствие маске и отсутствие в таблице «оборудование» в качестве уникального ключа. Создание может быть как по одному объекту, так и коллекция (на входе json-массив).
+Если «серийный номер» не проходит валидацию, по нему формируется соответствующие сообщение, которое возвращает интерфейс, после обработки всего массива номеров.   
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+id
+Тип оборудования
 
-## Learning Laravel
+Маска SN
+TP-Link TL-WR74 / XXAAAAAXAA
+D-Link DIR-300 / NXXAAXZXaa
+D-Link DIR-300 S / NXXAAXZXXX
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Где: 
+N – цифра от 0 до 9;
+A – прописная буква латинского алфавита;
+a – строчная буква латинского алфавита;
+X – прописная буква латинского алфавита либо цифра от 0 до 9;
+Z –символ из списка: “-“, “_”, “@”.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+front-end
+Для отображения сделать минимальное SPA-приложение с использованием TypeScript и Vue, работающее с разработанным API. 
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Форма добавления записей, содержащая:
+    1. Список «Тип оборудования» (id типа) select.
+    2. поле «Серийные номера» input-text/textarea.
+    3. Поле «Примечание» textarea
+    4. Кнопка «Добавить».
+И реализовать поиск, редактирование и удаление записей:
+   1. Поисковая строка input-text, для поиск по серийному номеру/примечанию.
