@@ -1,3 +1,5 @@
+Стек: Vue 3 + composition api + Vuex + Typescript // Laravel
+
 Задание было следующим:
 
 
